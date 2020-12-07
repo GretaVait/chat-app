@@ -16,6 +16,7 @@ const EditProfile = (props) => {
     e.preventDefault();
 
     props.updateUserHandler({
+      ...props.user,
       name: e.target.elements.username.value,
       image: URL.createObjectURL(e.target.elements.avatar.files[0])
     });
@@ -27,7 +28,7 @@ const EditProfile = (props) => {
       <form onSubmit={updateHandler}>
         <input style={{display: 'none'}} type="file" name="avatar" ref={hiddenFileInput} onChange={changeImageHandler} />
         <div onClick={pickImageHandler}>
-          <img src={image} alt=""/>
+          <img src={image} alt="" width="50px" />
         </div>
         <input type="text" defaultValue={props.user.name} name="username" />
         <button>Update</button>

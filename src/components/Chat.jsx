@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Chat = () => {
+const Chat = (props) => {
   return (
-    <div>Chat</div>
+    <div>
+      <p>{props.contact.name}</p>
+    </div>
   );
 }
 

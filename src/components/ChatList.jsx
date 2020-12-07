@@ -1,10 +1,13 @@
 import React from 'react';
 import Chat from './Chat';
 
-const ChatList = () => {
+const ChatList = (props) => {
   return (
     <div>
-      <Chat />
+      Chat List:
+      {props.contacts.map((contact, index) => (
+        <Chat key={index} contact={contact} />
+      ))}
     </div>
   );
 }
