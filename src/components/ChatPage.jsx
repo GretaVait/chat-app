@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react';
 import ChatBox from './ChatBox';
 import Sidebar from './Sidebar';
 
+import Avatar from '../img/avatar.png';
+
 const ChatPage = () => {
   const [ user, setUser ] = useState({
-    name: 'Burbuliukas',
-    image: null
+    name: 'user',
+    image: Avatar
   });
 
-  const updateUser = (updatedUser) => {
-    console.log(user)
+  
+  const updateUserHandler = (updatedUser) => {
     setUser(updatedUser);
-    console.log(user)
   }
 
   return (
     <div>
-      <Sidebar user={user} updateUser={updateUser} />
+      <Sidebar user={user} updateUserHandler={updateUserHandler} />
       <ChatBox user={user} />
     </div>
   );

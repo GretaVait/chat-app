@@ -19,7 +19,7 @@ const Sidebar = (props) => {
         <button>Log Out</button>
       </Link>
       <ChatList />
-      { isEditProfile && <EditProfile user={props.user} updateUser={props.updateUser} toggleEditProfile={toggleEditProfile} /> }
+      { isEditProfile && <EditProfile user={props.user} updateUserHandler={props.updateUserHandler} toggleEditProfile={toggleEditProfile} /> }
     </div>
   );
 }
