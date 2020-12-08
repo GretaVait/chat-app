@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react';
 import ChatBox from './ChatBox';
 import Sidebar from './Sidebar';
 
-import data from '../api/jsonbin';
+import data, {fetchData} from '../api/jsonbin';
 
 import Avatar from '../img/avatar.png';
 
 const ChatPage = () => {
-  const img = data.users[0].img ? data.users[0].img : Avatar;
 
   const [ user, setUser ] = useState({
-    id: data.users[0].id,
-    name: data.users[0].name,
-    image: img
+    id: '000',
+    name: 'user',
+    image: Avatar
   });
 
   const [ contacts, setContacts ] = useState([]);
@@ -24,28 +23,35 @@ const ChatPage = () => {
   const [ currentContact, setCurrentContact ] = useState({});
 
   useEffect(() => {
-    const userConversations = data.conversations.filter(conversation => (
-      conversation.u1id === user.id || conversation.u2id === user.id
-    ));
+    //
+    fetchData()
+      .then(data => {
+        const userAvatar = data.users[0].image ? data.users[0].image : Avatar
+        const userData = {
+          ...data.users[0],
+          image: userAvatar
+        }
+        setUser(userData);
 
-    setConversations(userConversations);
+        const userConversations = data.conversations.filter(conversation => (
+          conversation.u1id === userData.id || conversation.u2id === userData.id
+        ));
 
-    const userContacts = data.users.filter(contact => (
-      userConversations.map(userConversation => contact.id == (userConversation.u1id === user.id ? userConversation.u2id : userConversation.u1id)).includes(true)
-    ));
-
-    setContacts(userContacts);
-
-    const userMessages = data.messages.filter(message => (
-      userConversations.map(conversation => message.conversationId === conversation.id).includes(true)
-    ))
-
-    setMessages(userMessages);
+        setConversations(userConversations);
+    
+        const userContacts = data.users.filter(contact => (
+          userConversations.map(userConversation => contact.id == (userConversation.u1id === userData.id ? userConversation.u2id : userConversation.u1id)).includes(true)
+        ));
+    
+        setContacts(userContacts);
+    
+        const userMessages = data.messages.filter(message => (
+          userConversations.map(conversation => message.conversationId === conversation.id).includes(true)
+        ))
+    
+        setMessages(userMessages);
+      });
   }, [])
-
-  useEffect(() => {
-    console.log(messages);
-  }, [messages])
   
   const updateUserHandler = (updatedUser) => {
     setUser(updatedUser);
