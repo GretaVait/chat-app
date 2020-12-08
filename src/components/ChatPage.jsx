@@ -21,6 +21,8 @@ const ChatPage = () => {
 
   const [ messages, setMessages ] = useState([]);
 
+  const [ currentContact, setCurrentContact ] = useState({});
+
   useEffect(() => {
     const userConversations = data.conversations.filter(conversation => (
       conversation.u1id === user.id || conversation.u2id === user.id
@@ -38,9 +40,7 @@ const ChatPage = () => {
       userConversations.map(conversation => message.conversationId === conversation.id).includes(true)
     ))
 
-    console.log(userConversations);
-    console.log(userContacts);
-    console.log(userMessages);
+    setMessages(userMessages);
   }, [])
 
   
@@ -48,10 +48,21 @@ const ChatPage = () => {
     setUser(updatedUser);
   }
 
+  const openChatHandler = (contact) => {
+    setCurrentContact(contact);
+  }
+
   return (
     <div>
-      <Sidebar user={user} contacts={contacts} updateUserHandler={updateUserHandler} />
-      <ChatBox user={user} />
+      <Sidebar 
+        user={user} 
+        contacts={contacts} 
+        messages={messages} 
+        conversations={conversations} 
+        updateUserHandler={updateUserHandler} 
+        openChatHandler={openChatHandler} 
+      />
+      <ChatBox user={user} currentContact={currentContact} conversations={conversations} messages={messages} />
     </div>
   );
 }
