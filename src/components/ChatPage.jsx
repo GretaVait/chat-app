@@ -17,21 +17,30 @@ const ChatPage = () => {
 
   const [ contacts, setContacts ] = useState([]);
 
+  const [ conversations, setConversations ] = useState([]);
+
+  const [ messages, setMessages ] = useState([]);
+
   useEffect(() => {
-    const contactsData = data.contacts.filter(contact => (
-      contact.u1id == user.id || contact.u2id == user.id
-    ));
-    
-    const userContactIDs = contactsData.map(contact => (
-      contact.u1id == user.id ? contact.u2id : contact.u1id
+    const userConversations = data.conversations.filter(conversation => (
+      conversation.u1id === user.id || conversation.u2id === user.id
     ));
 
-    const userContacts = data.users.filter(user => (
-      userContactIDs.map(userContactID => user.id == userContactID).includes(true)
+    setConversations(userConversations);
+
+    const userContacts = data.users.filter(contact => (
+      userConversations.map(userConversation => contact.id == (userConversation.u1id === user.id ? userConversation.u2id : userConversation.u1id)).includes(true)
     ));
-    console.log(userContacts);
 
     setContacts(userContacts);
+
+    const userMessages = data.messages.filter(message => (
+      userConversations.map(conversation => message.conversationId === conversation.id).includes(true)
+    ))
+
+    console.log(userConversations);
+    console.log(userContacts);
+    console.log(userMessages);
   }, [])
 
   

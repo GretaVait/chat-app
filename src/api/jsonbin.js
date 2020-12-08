@@ -16,7 +16,7 @@ const data = {
           "img": null
       }
   ],
-  "contacts": [
+  "conversations": [
       {
           "id": "654151",
           "u1id": "159bca",
@@ -36,25 +36,32 @@ const data = {
   "messages": [
       {
           "id": "159159",
-          "contactsId": "654151",
+          "conversationId": "654151",
           "senderId": "159bca",
           "message": "Labas",
           "time": 150
       },
       {
           "id": "147258",
-          "contactsId": "654151",
+          "conversationId": "654151",
           "senderId": "abc123",
           "message": "Sveiks",
           "time": 152
       },
       {
           "id": "269269",
-          "contactsId": "7142365",
+          "conversationId": "7142365",
           "senderId": "159bca",
           "message": "Sup?",
           "time": 160
-      }
+      },
+      {
+        "id": "269268",
+        "conversationId": "956956",
+        "senderId": "648646",
+        "message": "Wha?",
+        "time": 160
+    }
   ]
 }
 
