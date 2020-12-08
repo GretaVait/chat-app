@@ -43,6 +43,9 @@ const ChatPage = () => {
     setMessages(userMessages);
   }, [])
 
+  useEffect(() => {
+    console.log(messages);
+  }, [messages])
   
   const updateUserHandler = (updatedUser) => {
     setUser(updatedUser);
@@ -50,6 +53,10 @@ const ChatPage = () => {
 
   const openChatHandler = (contact) => {
     setCurrentContact(contact);
+  }
+
+  const sendMessageHandler = (message) => {
+    setMessages(messages.concat(message))
   }
 
   return (
@@ -62,7 +69,13 @@ const ChatPage = () => {
         updateUserHandler={updateUserHandler} 
         openChatHandler={openChatHandler} 
       />
-      <ChatBox user={user} currentContact={currentContact} conversations={conversations} messages={messages} />
+      <ChatBox 
+        user={user} 
+        currentContact={currentContact} 
+        conversations={conversations} 
+        messages={messages}
+        sendMessageHandler={sendMessageHandler}
+      />
     </div>
   );
 }
