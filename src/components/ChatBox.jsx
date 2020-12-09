@@ -5,6 +5,8 @@ import { Form, InputGroup, FormControl, Button, Image, Dropdown, DropdownButton 
 
 import { FaPaperPlane, FaArrowLeft } from 'react-icons/fa';
 
+import { BsThreeDotsVertical } from "react-icons/bs";
+
 import Illustration from '../img/illustration.svg';
 
 const ChatBox = (props) => {
@@ -75,7 +77,7 @@ const ChatBox = (props) => {
                 : 'chat-box__message chat-box__message--receiver'
                 }>
                 <p>{displayedMessage.message}</p>
-                <DropdownButton title="">
+                <DropdownButton title={<BsThreeDotsVertical />} className="chat-box__message__aside">
                   <Dropdown.Item onClick={() => deleteMessageHandler(displayedMessage.id)}>Remove</Dropdown.Item>
                 </DropdownButton>
                 <span className="time">{moment(displayedMessage.time).format('HH:mm')}</span>

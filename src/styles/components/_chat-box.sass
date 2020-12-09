@@ -73,6 +73,10 @@
       background-color: $mid-grey
       float: left
       border-radius: 5px 5px 5px 0
+      .chat-box__message__aside
+        svg
+          path
+            fill: black
     &--sender
       background-color: $blue
       color: white
@@ -85,3 +89,16 @@
       right: 0
       font-size: .75rem
       color: $grey
+
+    &__aside
+      position: absolute !important
+      top: 50%
+      right: 0
+      transform: translateY(-50%)
+      z-index: 999
+      .dropdown-toggle
+        padding: 0 !important
+        background: none !important
+        border: none !important
+        &::after
+          display: none !important
