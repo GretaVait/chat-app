@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 
+import Avatar from '../img/avatar.png';
+
 import { Form, Image, Button } from 'react-bootstrap';
 
 import { FaArrowLeft, FaPen } from 'react-icons/fa';
@@ -22,17 +24,17 @@ const EditProfile = (props) => {
     props.updateUserHandler({
       ...props.user,
       name: e.target.elements.username.value,
-      image: URL.createObjectURL(e.target.elements.avatar.files[0])
+      image: e.target.elements.avatar.files[0] ? URL.createObjectURL(e.target.elements.avatar.files[0]) : Avatar
     });
   }
 
   return (
-    <div className="edit-profile">
+    <div>
       <div className="edit-profile__header">
         <button onClick={props.toggleEditProfile} className="btn btn--back"><FaArrowLeft /></button>
         <h5>Profile</h5>
       </div>
-      <Form className="edit-profile__form">
+      <Form className="edit-profile__form" onSubmit={updateHandler}>
         <Form.Group>
           <Form.Control style={{display: 'none'}} type="file" name="avatar" ref={hiddenFileInput} onChange={changeImageHandler} />
           <div onClick={pickImageHandler} className="edit-profile__form__image">

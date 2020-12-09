@@ -41,7 +41,9 @@ const Sidebar = (props) => {
         conversations={props.conversations} 
         openChatHandler={props.openChatHandler}
       />
-      { isEditProfile && <EditProfile user={props.user} updateUserHandler={props.updateUserHandler} toggleEditProfile={toggleEditProfile} /> }
+      <div className={isEditProfile ? 'edit-profile visible' : 'edit-profile'}>
+        <EditProfile user={props.user} updateUserHandler={props.updateUserHandler} toggleEditProfile={toggleEditProfile} />
+      </div>
     </div>
   );
 }

@@ -6,8 +6,6 @@ import data, {fetchData} from '../api/jsonbin';
 
 import Avatar from '../img/avatar.png';
 
-import { Container, Row, Col } from 'react-bootstrap';
-
 const ChatPage = () => {
 
   const [ user, setUser ] = useState({
