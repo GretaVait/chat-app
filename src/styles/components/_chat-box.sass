@@ -6,6 +6,33 @@
   height: 100%
   flex: 65%
   border-left: 1px solid $mid-grey
+  background-color: white
+  @media screen and ( max-width: 769px )
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    transform: translateX(100%)
+    transition: transform .7s cubic-bezier(0.165, 0.84, 0.44, 1)
+    &.visible
+      transform: translateX(0%)
+
+  &__inactive
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    height: 100vh
+    padding: 10rem
+    text-align: center
+    @media screen and ( max-width: 1024px )
+      padding: 6rem
+    @media screen and ( max-width: 768px )
+      display: none
+      
+    img
+      margin-bottom: 1rem
 
   &__header
     position: absolute
@@ -19,6 +46,11 @@
     border-bottom: 1px solid $mid-grey
     &__name
       margin-left: 1rem
+    &__back
+      display: none
+      @media screen and ( max-width: 769px )
+        display: block
+        margin-right: 1rem
 
   &__send
     padding: 0 1rem
@@ -34,8 +66,9 @@
   &__message
     position: relative
     padding: .3rem .6rem
-    clear: both
     margin-bottom: 2rem
+    width: 60%
+    clear: both
     &--receiver
       background-color: $mid-grey
       float: left

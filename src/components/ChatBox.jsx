@@ -3,7 +3,9 @@ import moment from 'moment';
 
 import { Form, InputGroup, FormControl, Button, Image } from 'react-bootstrap';
 
-import { FaPaperPlane } from 'react-icons/fa';
+import { FaPaperPlane, FaArrowLeft } from 'react-icons/fa';
+
+import Illustration from '../img/illustration.svg';
 
 const ChatBox = (props) => {
   let filteredMessagesArray = [];
@@ -32,11 +34,17 @@ const ChatBox = (props) => {
     e.target.elements.message.value = '';
   }
   return (
-    <div className="chat-box">
-      {!Object.keys(props.currentContact).length && <p>Select a contact to send a message!</p>}
+    <div className={!!Object.keys(props.currentContact).length ? 'chat-box visible' : 'chat-box'}>
+      {!Object.keys(props.currentContact).length && 
+        <div className="chat-box__inactive">
+          <img src={Illustration} alt="Illustration" />
+          <h3>Select a contact to start a conversation</h3>
+        </div>
+      }
       {!!Object.keys(props.currentContact).length &&
         <div>
           <div className="chat-box__header">
+            <FaArrowLeft className="chat-box__header__back" />
             <Image
               width={64}
               height={64}
