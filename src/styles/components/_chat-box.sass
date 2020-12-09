@@ -1,0 +1,21 @@
+.chat-box
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  background-color: $light-grey
+  height: 100%
+  flex: 65%
+  border-left: 1px solid $grey
+  padding: 1rem
+
+  &__message
+    border-radius: 5px
+    box-shadow: 2px 2px 4px $grey
+    padding: .3rem
+    clear: both
+    &--receiver
+      background-color: white
+      float: left
+    &--sender
+      background-color: $green
+      float: right

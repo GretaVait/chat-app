@@ -14,7 +14,7 @@ const Chat = (props) => {
         roundedCircle
       />
       <Media.Body className="contact__content">
-        <h5>{props.contact.name}</h5>
+        <h5 className="contact__content__name">{props.contact.name}</h5>
         <p className="contact__content__faded">{props.lastMessage}</p>
       </Media.Body>
     </Media>

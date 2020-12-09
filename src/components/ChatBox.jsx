@@ -16,6 +16,8 @@ const ChatBox = (props) => {
       }
     })
     setDisplayedMessages(filteredMessagesArray);
+    console.log(filteredMessagesArray)
+    console.log(props.user)
   }, [props.currentContact, props.messages]);
   
   const sendMessageHandler = (e) => {  
@@ -31,13 +33,16 @@ const ChatBox = (props) => {
   }
   return (
     <div className="chat-box">
+      {!Object.keys(props.currentContact).length && <p>Select a contact to send a message!</p>}
       {!!Object.keys(props.currentContact).length &&
         <div>
           {displayedMessages.map(displayedMessage => (
-            <p key={displayedMessage.id}>{displayedMessage.message}</p>
+          <div>
+            <p key={displayedMessage.id} className={displayedMessage.senderId === props.user.id ? 'chat-box__message chat-box__message--sender' : 'chat-box__message chat-box__message--receiver'}>{displayedMessage.message}</p>
+          </div>
           ))}
 
-          <Form onSubmit={sendMessageHandler}>
+          <Form onSubmit={sendMessageHandler} className="chat-box__send">
             <Form.Group>
               <InputGroup className="mb-3">
                 <FormControl
@@ -46,7 +51,7 @@ const ChatBox = (props) => {
                   required
                 />
                 <InputGroup.Append>
-                  <Button variant="outline-secondary" type="submit">Send</Button>
+                  <Button variant="primary" type="submit">Send</Button>
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>

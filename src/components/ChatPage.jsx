@@ -78,30 +78,22 @@ const ChatPage = () => {
 
   return (
     <div className="chat-page">
-      <Container style={{ height: '100vh', width: '100vw' }}>
-        <Row>
-          <Col lg={4}>
-            <Sidebar 
-              user={user} 
-              contacts={contacts} 
-              messages={messages} 
-              conversations={conversations} 
-              updateUserHandler={updateUserHandler} 
-              openChatHandler={openChatHandler} 
-            />
-          </Col>
+      <Sidebar 
+        user={user} 
+        contacts={contacts} 
+        messages={messages} 
+        conversations={conversations} 
+        updateUserHandler={updateUserHandler} 
+        openChatHandler={openChatHandler} 
+      />
 
-          <Col lg={8}>
-            <ChatBox 
-              user={user} 
-              currentContact={currentContact} 
-              conversations={conversations} 
-              messages={messages}
-              sendMessageHandler={sendMessageHandler}
-            />
-          </Col>
-        </Row>
-      </Container>
+      <ChatBox 
+        user={user} 
+        currentContact={currentContact} 
+        conversations={conversations} 
+        messages={messages}
+        sendMessageHandler={sendMessageHandler}
+      />
     </div>
   );
 }
