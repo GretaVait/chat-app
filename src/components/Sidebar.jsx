@@ -27,6 +27,10 @@ const Sidebar = (props) => {
             roundedCircle
           />
         </div>
+
+        <Button variant="primary">
+          Add Chat
+        </Button>
         
         <Link to="/">
           <Button variant="danger">

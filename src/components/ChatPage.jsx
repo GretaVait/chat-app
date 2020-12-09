@@ -74,7 +74,12 @@ const ChatPage = () => {
   }
 
   const sendMessageHandler = (message) => {
-    setMessages(messages.concat(message))
+    setMessages(messages.concat(message));
+  }
+
+  const deleteMessageHandler = (messageId) => {
+    const updatedMessages = messages.filter(message => message.id != messageId)
+    setMessages(updatedMessages);
   }
 
   return (
@@ -96,6 +101,7 @@ const ChatPage = () => {
         messages={messages}
         sendMessageHandler={sendMessageHandler}
         closeChatHandler={closeChatHandler}
+        deleteMessageHandler={deleteMessageHandler}
       />
     </div>
   );

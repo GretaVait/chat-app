@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 
-import { Form, InputGroup, FormControl, Button, Image } from 'react-bootstrap';
+import { Form, InputGroup, FormControl, Button, Image, Dropdown, DropdownButton } from 'react-bootstrap';
 
 import { FaPaperPlane, FaArrowLeft } from 'react-icons/fa';
 
@@ -38,6 +38,11 @@ const ChatBox = (props) => {
     props.closeChatHandler();
   }
 
+  const deleteMessageHandler = (messageId) => {
+    // console.log(messageId);
+    props.deleteMessageHandler(messageId);
+  }
+
   return (
     <div className={!!Object.keys(props.currentContact).length ? 'chat-box visible' : 'chat-box'}>
       {!Object.keys(props.currentContact).length && 
@@ -64,9 +69,17 @@ const ChatBox = (props) => {
           <div className="chat-box__send">
             {displayedMessages.map(displayedMessage => (
             <div key={displayedMessage.id}>
-              <p className={displayedMessage.senderId === props.user.id ? 'chat-box__message chat-box__message--sender' : 'chat-box__message chat-box__message--receiver'}>{displayedMessage.message}
-              <span className="time">{moment(displayedMessage.time).format('HH:mm')}</span>
-              </p>
+              <div className={
+                displayedMessage.senderId === props.user.id ? 
+                  'chat-box__message chat-box__message--sender' 
+                : 'chat-box__message chat-box__message--receiver'
+                }>
+                <p>{displayedMessage.message}</p>
+                <DropdownButton title="">
+                  <Dropdown.Item onClick={() => deleteMessageHandler(displayedMessage.id)}>Remove</Dropdown.Item>
+                </DropdownButton>
+                <span className="time">{moment(displayedMessage.time).format('HH:mm')}</span>
+              </div>
             </div>
             ))}
 
