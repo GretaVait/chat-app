@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import Avatar from '../img/avatar.png';
 
@@ -8,7 +8,10 @@ import { FaArrowLeft, FaPen } from 'react-icons/fa';
 
 const EditProfile = (props) => {
   const [ image, setImage ] = useState(props.user.image);
+  const [ name, setName ] = useState(props.user.name);
+
   const hiddenFileInput = useRef(null);
+
 
   const changeImageHandler = (e) => {
     setImage(URL.createObjectURL(e.target.files[0]));
@@ -27,6 +30,14 @@ const EditProfile = (props) => {
       image: e.target.elements.avatar.files[0] ? URL.createObjectURL(e.target.elements.avatar.files[0]) : Avatar
     });
   }
+
+  const changeNameHandler = (e) => {
+    setName(e.target.value);
+  }
+
+  useEffect(() => {
+    setName(props.user.name);
+  }, [props.user])
 
   return (
     <div>
@@ -47,7 +58,7 @@ const EditProfile = (props) => {
               roundedCircle
             />
           </div>
-          <Form.Control type="text" defaultValue={props.user.name} name="username" />
+          <Form.Control type="text" value={name} onChange={changeNameHandler} name="username" />
         </Form.Group>
 
         <Button variant="primary" type="submit">
