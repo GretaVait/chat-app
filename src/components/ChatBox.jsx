@@ -88,8 +88,8 @@ const ChatBox = (props) => {
                 </div>
               </div>
               ))}
-            </div>
             <div ref={scrollPoint} style={{ float: 'right', clear: 'both' }}>current</div>
+            </div>
 
             <Form onSubmit={sendMessageHandler}>
               <Form.Group>
