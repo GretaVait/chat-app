@@ -7,6 +7,7 @@ const ChatList = (props) => {
   return (
     <div>
       {props.contacts.map(contact => {
+        lastMessage = '';
         props.conversations.map(conversation => {
           if (conversation.u1id === contact.id || conversation.u2id === contact.id) {
             props.messages.map(message => {
