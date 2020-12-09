@@ -1,4 +1,5 @@
 .chat-box
+  position: relative
   display: flex
   flex-direction: column
   justify-content: flex-end
@@ -6,7 +7,21 @@
   height: 100%
   flex: 65%
   border-left: 1px solid $grey
-  padding: 1rem
+
+  &__header
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    display: flex
+    align-items: center
+    background-color: $mid-grey
+    padding: 1rem
+    &__name
+      margin-left: 1rem
+
+  &__send
+    padding: 0 1rem
 
   &__message
     border-radius: 5px

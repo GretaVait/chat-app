@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 
-import { Form, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { Form, InputGroup, FormControl, Button, Image } from 'react-bootstrap';
 
 import { FaPaperPlane } from 'react-icons/fa';
 
@@ -18,8 +18,6 @@ const ChatBox = (props) => {
       }
     })
     setDisplayedMessages(filteredMessagesArray);
-    console.log(filteredMessagesArray)
-    console.log(props.user)
   }, [props.currentContact, props.messages]);
   
   const sendMessageHandler = (e) => {  
@@ -38,27 +36,38 @@ const ChatBox = (props) => {
       {!Object.keys(props.currentContact).length && <p>Select a contact to send a message!</p>}
       {!!Object.keys(props.currentContact).length &&
         <div>
-          {displayedMessages.map(displayedMessage => (
-          <div>
-            <p key={displayedMessage.id} className={displayedMessage.senderId === props.user.id ? 'chat-box__message chat-box__message--sender' : 'chat-box__message chat-box__message--receiver'}>{displayedMessage.message}</p>
+          <div className="chat-box__header">
+            <Image
+              width={64}
+              height={64}
+              src={props.currentContact.image}
+              alt=""
+              roundedCircle
+            />
+            <h5 className="chat-box__header__name">{props.currentContact.name}</h5>
           </div>
-          ))}
+          <div className="chat-box__send">
+            {displayedMessages.map(displayedMessage => (
+            <div key={displayedMessage.id}>
+              <p className={displayedMessage.senderId === props.user.id ? 'chat-box__message chat-box__message--sender' : 'chat-box__message chat-box__message--receiver'}>{displayedMessage.message}</p>
+            </div>
+            ))}
 
-          <Form onSubmit={sendMessageHandler} className="chat-box__send">
-            <Form.Group>
-              <InputGroup className="mb-3">
-                <FormControl
-                  as="textarea"
-                  name="message"
-                  required
-                />
-                <InputGroup.Append>
-                  <Button variant="primary" type="submit"><FaPaperPlane /></Button>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form.Group>
-          </Form>
-        
+            <Form onSubmit={sendMessageHandler}>
+              <Form.Group>
+                <InputGroup className="mb-3">
+                  <FormControl
+                    as="textarea"
+                    name="message"
+                    required
+                  />
+                  <InputGroup.Append>
+                    <Button variant="primary" type="submit"><FaPaperPlane /></Button>
+                  </InputGroup.Append>
+                </InputGroup>
+              </Form.Group>
+            </Form>
+          </div>
         </div>
       }
     </div>

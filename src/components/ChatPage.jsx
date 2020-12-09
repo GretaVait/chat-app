@@ -54,7 +54,6 @@ const ChatPage = () => {
         });
     
         setContacts(formattedContacts);
-        console.log(formattedContacts);
     
         const userMessages = data.messages.filter(message => (
           userConversations.map(conversation => message.conversationId === conversation.id).includes(true)
@@ -88,7 +87,8 @@ const ChatPage = () => {
       />
 
       <ChatBox 
-        user={user} 
+        user={user}
+        contacts={contacts} 
         currentContact={currentContact} 
         conversations={conversations} 
         messages={messages}
