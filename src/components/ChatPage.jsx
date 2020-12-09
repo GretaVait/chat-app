@@ -6,6 +6,8 @@ import data, {fetchData} from '../api/jsonbin';
 
 import Avatar from '../img/avatar.png';
 
+import { Container, Row, Col } from 'react-bootstrap';
+
 const ChatPage = () => {
 
   const [ user, setUser ] = useState({
@@ -75,22 +77,31 @@ const ChatPage = () => {
   }
 
   return (
-    <div>
-      <Sidebar 
-        user={user} 
-        contacts={contacts} 
-        messages={messages} 
-        conversations={conversations} 
-        updateUserHandler={updateUserHandler} 
-        openChatHandler={openChatHandler} 
-      />
-      <ChatBox 
-        user={user} 
-        currentContact={currentContact} 
-        conversations={conversations} 
-        messages={messages}
-        sendMessageHandler={sendMessageHandler}
-      />
+    <div className="chat-page">
+      <Container style={{ height: '100vh', width: '100vw' }}>
+        <Row>
+          <Col lg={4}>
+            <Sidebar 
+              user={user} 
+              contacts={contacts} 
+              messages={messages} 
+              conversations={conversations} 
+              updateUserHandler={updateUserHandler} 
+              openChatHandler={openChatHandler} 
+            />
+          </Col>
+
+          <Col lg={8}>
+            <ChatBox 
+              user={user} 
+              currentContact={currentContact} 
+              conversations={conversations} 
+              messages={messages}
+              sendMessageHandler={sendMessageHandler}
+            />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

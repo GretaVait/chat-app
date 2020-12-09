@@ -1,17 +1,18 @@
 import React from 'react';
-import { Media } from 'react-bootstrap';
+import { Media, Image } from 'react-bootstrap';
 
 const Chat = (props) => {
 
   return (
     <div>
       <Media as="li">
-        <img
+        <Image
           width={64}
           height={64}
           className="mr-3"
           src={props.contact.image}
-          alt="Generic placeholder"
+          alt=""
+          roundedCircle
         />
         <Media.Body>
           <h5>{props.contact.name}</h5>

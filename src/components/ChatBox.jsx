@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 
+import { Form, InputGroup, FormControl, Button } from 'react-bootstrap';
+
 const ChatBox = (props) => {
   let filteredMessagesArray = [];
   const [ currentConversationId, setCurrentConversationId ] = useState('');
@@ -28,16 +30,28 @@ const ChatBox = (props) => {
     e.target.elements.message.value = '';
   }
   return (
-    <div>
+    <div className="chat-box">
       {!!Object.keys(props.currentContact).length &&
         <div>
           {displayedMessages.map(displayedMessage => (
             <p key={displayedMessage.id}>{displayedMessage.message}</p>
           ))}
-          <form onSubmit={sendMessageHandler}>
-            <input type="text" name="message" />
-            <button>send</button>
-          </form>
+
+          <Form onSubmit={sendMessageHandler}>
+            <Form.Group>
+              <InputGroup className="mb-3">
+                <FormControl
+                  as="textarea"
+                  name="message"
+                  required
+                />
+                <InputGroup.Append>
+                  <Button variant="outline-secondary" type="submit">Send</Button>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form.Group>
+          </Form>
+        
         </div>
       }
     </div>
