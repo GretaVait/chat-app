@@ -49,7 +49,9 @@ const ChatBox = (props) => {
           <div className="chat-box__send">
             {displayedMessages.map(displayedMessage => (
             <div key={displayedMessage.id}>
-              <p className={displayedMessage.senderId === props.user.id ? 'chat-box__message chat-box__message--sender' : 'chat-box__message chat-box__message--receiver'}>{displayedMessage.message}</p>
+              <p className={displayedMessage.senderId === props.user.id ? 'chat-box__message chat-box__message--sender' : 'chat-box__message chat-box__message--receiver'}>{displayedMessage.message}
+              <span className="time">{displayedMessage.time}</span>
+              </p>
             </div>
             ))}
 
@@ -57,12 +59,13 @@ const ChatBox = (props) => {
               <Form.Group>
                 <InputGroup className="mb-3">
                   <FormControl
+                    className="chat-box__send__text"
                     as="textarea"
                     name="message"
                     required
                   />
                   <InputGroup.Append>
-                    <Button variant="primary" type="submit"><FaPaperPlane /></Button>
+                    <Button variant="primary" type="submit" className="chat-box__send__btn"><FaPaperPlane /></Button>
                   </InputGroup.Append>
                 </InputGroup>
               </Form.Group>
