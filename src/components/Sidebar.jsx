@@ -5,6 +5,8 @@ import EditProfile from './EditProfile';
 
 import { Image, Button } from 'react-bootstrap';
 
+import { FaPowerOff } from 'react-icons/fa';
+
 const Sidebar = (props) => {
 
   const [ isEditProfile, setIsEditProfile ] = useState(false);
@@ -28,7 +30,7 @@ const Sidebar = (props) => {
         
         <Link to="/">
           <Button variant="danger">
-            Logout
+            Logout <FaPowerOff />
           </Button>
         </Link>
       </div>

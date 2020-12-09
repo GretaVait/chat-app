@@ -3,6 +3,8 @@ import moment from 'moment';
 
 import { Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 
+import { FaPaperPlane } from 'react-icons/fa';
+
 const ChatBox = (props) => {
   let filteredMessagesArray = [];
   const [ currentConversationId, setCurrentConversationId ] = useState('');
@@ -51,7 +53,7 @@ const ChatBox = (props) => {
                   required
                 />
                 <InputGroup.Append>
-                  <Button variant="primary" type="submit">Send</Button>
+                  <Button variant="primary" type="submit"><FaPaperPlane /></Button>
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
