@@ -1,5 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+//
+import { Container, Form, Button } from 'react-bootstrap';
 
 
 const LoginPage = () => {
@@ -10,15 +12,22 @@ const LoginPage = () => {
     history.push('/chat');
   }
   return (
-    <div>
-      <form onSubmit={startLogin}>
-        <label htmlFor="email">Enter Your Email</label>
-        <input type="email" required id="email" />
-        <label htmlFor="">Enter Your Password</label>
-        <input type="password" required />
-        <button>Log In</button>
-      </form>
-    </div>
+    <Container className="flex-column align-items-center justify-content-center d-flex" style={{ height: '100vh', width: '100vw' }}>
+      <h1>Login</h1>
+      <Form onSubmit={startLogin}>
+      <Form.Group>
+        <Form.Label>Enter Your Email</Form.Label>
+        <Form.Control type="email" id="email" required />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Enter Your Password</Form.Label>
+        <Form.Control type="password" id="password" required />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Login
+      </Button>
+      </Form>
+    </Container>
   );
 }
 
