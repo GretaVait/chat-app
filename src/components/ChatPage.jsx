@@ -69,6 +69,10 @@ const ChatPage = () => {
     setCurrentContact(contact);
   }
 
+  const closeChatHandler = () => {
+    setCurrentContact({});
+  }
+
   const sendMessageHandler = (message) => {
     setMessages(messages.concat(message))
   }
@@ -91,6 +95,7 @@ const ChatPage = () => {
         conversations={conversations} 
         messages={messages}
         sendMessageHandler={sendMessageHandler}
+        closeChatHandler={closeChatHandler}
       />
     </div>
   );

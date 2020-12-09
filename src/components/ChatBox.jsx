@@ -33,6 +33,11 @@ const ChatBox = (props) => {
     });
     e.target.elements.message.value = '';
   }
+
+  const closeChatHandler = () => {
+    props.closeChatHandler();
+  }
+
   return (
     <div className={!!Object.keys(props.currentContact).length ? 'chat-box visible' : 'chat-box'}>
       {!Object.keys(props.currentContact).length && 
@@ -44,7 +49,9 @@ const ChatBox = (props) => {
       {!!Object.keys(props.currentContact).length &&
         <div>
           <div className="chat-box__header">
-            <FaArrowLeft className="chat-box__header__back" />
+            <button className="btn" onClick={closeChatHandler}>
+              <FaArrowLeft className="chat-box__header__back" />
+            </button>
             <Image
               width={64}
               height={64}
