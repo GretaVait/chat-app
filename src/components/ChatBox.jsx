@@ -65,7 +65,7 @@ const ChatBox = (props) => {
             {displayedMessages.map(displayedMessage => (
             <div key={displayedMessage.id}>
               <p className={displayedMessage.senderId === props.user.id ? 'chat-box__message chat-box__message--sender' : 'chat-box__message chat-box__message--receiver'}>{displayedMessage.message}
-              <span className="time">{displayedMessage.time}</span>
+              <span className="time">{moment(displayedMessage.time).format('HH:mm')}</span>
               </p>
             </div>
             ))}
