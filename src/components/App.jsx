@@ -1,5 +1,6 @@
 import LoginPage from './LoginPage';
 import AppRouter from '../router/AppRouter';
+import '../styles/styles.sass';
 
 function App() {
   return (
