@@ -6,7 +6,6 @@ const ChatList = (props) => {
 
   return (
     <div>
-      Chat List:
       {props.contacts.map(contact => {
         props.conversations.map(conversation => {
           if (conversation.u1id === contact.id || conversation.u2id === contact.id) {

@@ -42,8 +42,17 @@ const ChatPage = () => {
         const userContacts = data.users.filter(contact => (
           userConversations.map(userConversation => contact.id == (userConversation.u1id === userData.id ? userConversation.u2id : userConversation.u1id)).includes(true)
         ));
+
+        const formattedContacts = userContacts.map(contact => {
+          const contactAvatar = contact.image ? contact.image : Avatar
+          return ({
+            ...contact,
+            image: contactAvatar
+          })
+        });
     
-        setContacts(userContacts);
+        setContacts(formattedContacts);
+        console.log(formattedContacts);
     
         const userMessages = data.messages.filter(message => (
           userConversations.map(conversation => message.conversationId === conversation.id).includes(true)
