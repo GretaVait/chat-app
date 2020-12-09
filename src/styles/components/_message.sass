@@ -1,9 +1,12 @@
 .message
   position: relative
-  padding: .3rem .6rem
+  padding: .3rem 1.3rem .3rem .6rem
   margin-bottom: 2rem
   max-width: 60%
   clear: both
+  @media screen and ( max-width: 1024px )
+    max-width: 80%
+    
   &--receiver
     background-color: $mid-grey
     float: left
@@ -17,6 +20,10 @@
     color: white
     float: right
     border-radius: 5px 5px 0 5px
+  
+  p
+    margin-bottom: 0 !important
+    word-break: break-all
 
   .time
     position: absolute

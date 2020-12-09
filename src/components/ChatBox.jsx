@@ -25,6 +25,10 @@ const ChatBox = (props) => {
     })
     setDisplayedMessages(filteredMessagesArray);
   }, [props.currentContact, props.messages]);
+
+  useEffect(() => {
+    scrollPoint.current && scrollPoint.current.scrollIntoView({ behavior: 'smooth' });
+  }, [displayedMessages])
   
   const sendMessageHandler = (e) => {  
     e.preventDefault();
@@ -36,8 +40,6 @@ const ChatBox = (props) => {
       time: moment().format()
     });
     e.target.elements.message.value = '';
-
-    scrollPoint.current.scrollIntoView({ behavior: 'smooth' });
   }
 
   const closeChatHandler = () => {
