@@ -1,0 +1,39 @@
+.message
+  position: relative
+  padding: .3rem .6rem
+  margin-bottom: 2rem
+  max-width: 60%
+  clear: both
+  &--receiver
+    background-color: $mid-grey
+    float: left
+    border-radius: 5px 5px 5px 0
+    .message__aside
+      svg
+        path
+          fill: black
+  &--sender
+    background-color: $blue
+    color: white
+    float: right
+    border-radius: 5px 5px 0 5px
+
+  .time
+    position: absolute
+    bottom: -18px
+    right: 0
+    font-size: .75rem
+    color: $grey
+
+  &__aside
+    position: absolute !important
+    top: 50%
+    right: 0
+    transform: translateY(-50%)
+    z-index: 999
+    .dropdown-toggle
+      padding: 0 !important
+      background: none !important
+      border: none !important
+      &::after
+        display: none !important

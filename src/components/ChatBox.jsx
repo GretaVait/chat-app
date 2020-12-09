@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import moment from 'moment';
 
 import { Form, InputGroup, FormControl, Button, Image, Dropdown, DropdownButton } from 'react-bootstrap';
@@ -13,6 +13,8 @@ const ChatBox = (props) => {
   let filteredMessagesArray = [];
   const [ currentConversationId, setCurrentConversationId ] = useState('');
   const [ displayedMessages, setDisplayedMessages ] = useState([]);
+
+  const scrollPoint = useRef();
 
   useEffect(() => {
     props.conversations.map(conversation => {
@@ -34,6 +36,8 @@ const ChatBox = (props) => {
       time: moment().format()
     });
     e.target.elements.message.value = '';
+
+    scrollPoint.current.scrollIntoView({ behavior: 'smooth' });
   }
 
   const closeChatHandler = () => {
@@ -41,7 +45,6 @@ const ChatBox = (props) => {
   }
 
   const deleteMessageHandler = (messageId) => {
-    // console.log(messageId);
     props.deleteMessageHandler(messageId);
   }
 
@@ -69,21 +72,24 @@ const ChatBox = (props) => {
             <h5 className="chat-box__header__name">{props.currentContact.name}</h5>
           </div>
           <div className="chat-box__send">
-            {displayedMessages.map(displayedMessage => (
-            <div key={displayedMessage.id}>
-              <div className={
-                displayedMessage.senderId === props.user.id ? 
-                  'chat-box__message chat-box__message--sender' 
-                : 'chat-box__message chat-box__message--receiver'
-                }>
-                <p>{displayedMessage.message}</p>
-                <DropdownButton title={<BsThreeDotsVertical />} className="chat-box__message__aside">
-                  <Dropdown.Item onClick={() => deleteMessageHandler(displayedMessage.id)}>Remove</Dropdown.Item>
-                </DropdownButton>
-                <span className="time">{moment(displayedMessage.time).format('HH:mm')}</span>
+            <div className="chat-box__send__messages">
+              {displayedMessages.map(displayedMessage => (
+              <div key={displayedMessage.id}>
+                <div className={
+                  displayedMessage.senderId === props.user.id ? 
+                    'message message--sender' 
+                  : 'message message--receiver'
+                  }>
+                  <p>{displayedMessage.message}</p>
+                  <DropdownButton title={<BsThreeDotsVertical />} className="message__aside">
+                    <Dropdown.Item onClick={() => deleteMessageHandler(displayedMessage.id)}>Remove</Dropdown.Item>
+                  </DropdownButton>
+                  <span className="time">{moment(displayedMessage.time).format('HH:mm')}</span>
+                </div>
               </div>
+              ))}
             </div>
-            ))}
+            <div ref={scrollPoint} style={{ float: 'right', clear: 'both' }}>current</div>
 
             <Form onSubmit={sendMessageHandler}>
               <Form.Group>
