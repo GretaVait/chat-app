@@ -16,6 +16,8 @@ const ChatPage = () => {
     image: Avatar
   });
 
+  const [ allUsers, setAllUsers ] = useState([]);
+
   const [ contacts, setContacts ] = useState([]);
 
   const [ conversations, setConversations ] = useState([]);
@@ -37,6 +39,8 @@ const ChatPage = () => {
         setContactsData(data.users, userConversations, userData);
         
         setMessagesData(data.messages, userConversations);
+
+        setAllUsers(data.users);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -115,26 +119,17 @@ const ChatPage = () => {
   }
 
   const addContactHandler = (contact) => {
-    console.log(contact.id)
-    fetchData()
-      .then(data => {
-        const updatedConversations = conversations.concat({
-          id: Math.floor(Math.random() * Math.pow(10, 6)).toString(),
-          u1id: user.id,
-          u2id: contact.id
-        })
+    const updatedConversations = conversations.concat({
+      id: Math.floor(Math.random() * Math.pow(10, 6)).toString(),
+      u1id: user.id,
+      u2id: contact.id
+    })
 
-        setConversations(updatedConversations);
-          
-        setContactsData(data.users, updatedConversations, user);
-        
-        setMessagesData(data.messages, updatedConversations);
+    setConversations(updatedConversations);
+      
+    setContactsData(allUsers, updatedConversations, user);
 
-        openChatHandler(contact);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    openChatHandler(contact);
   }
 
   return (
@@ -146,6 +141,7 @@ const ChatPage = () => {
           messages={messages} 
           conversations={conversations} 
           currentContact={currentContact} 
+          allUsers={allUsers}
           updateUserHandler={updateUserHandler} 
           openChatHandler={openChatHandler}
           addContactHandler={addContactHandler}

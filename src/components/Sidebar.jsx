@@ -41,6 +41,7 @@ const Sidebar = (props) => {
           onHide={() => setModalShow(false)}
           conversations={props.conversations}
           user={props.user}
+          allUsers={props.allUsers}
           addContactHandler={props.addContactHandler}
         />
         <div className="sidebar__user__cta">

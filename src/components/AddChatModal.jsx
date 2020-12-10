@@ -10,25 +10,21 @@ import Avatar from '../img/avatar.png';
 const AddChatModal = (props) => {
   const [ otherContacts, setOtherContacts ] = useState([]);
   useEffect(() => {
-    setOtherContacts([]);
     if (props.show) {
-      fetchData()
-        .then(data => {
-          const otherContacts = data.users.filter(contact => (
-            !props.conversations.map(userConversation => contact.id == (userConversation.u1id === props.user.id ? userConversation.u2id : userConversation.u1id)).includes(true)
-          ));
+      const otherContacts = props.allUsers.filter(contact => (
+        !props.conversations.map(userConversation => contact.id == (userConversation.u1id === props.user.id ? userConversation.u2id : userConversation.u1id)).includes(true)
+      ));
 
-          const filteredContacts = otherContacts.filter(contact => props.user.id != contact.id)
+      const filteredContacts = otherContacts.filter(contact => props.user.id != contact.id)
 
-          const formattedContacts = filteredContacts.map(contact => {
-            const contactAvatar = contact.image ? contact.image : Avatar
-            return ({
-              ...contact,
-              image: contactAvatar
-            })
-          });
-          setOtherContacts(formattedContacts);
+      const formattedContacts = filteredContacts.map(contact => {
+        const contactAvatar = contact.image ? contact.image : Avatar
+        return ({
+          ...contact,
+          image: contactAvatar
         })
+      });
+      setOtherContacts(formattedContacts);
     }
   }, [props.show])
 
@@ -59,7 +55,7 @@ const AddChatModal = (props) => {
             />
             <h5>{contact.name}</h5>
           </div>
-        )) : <Loading />}
+        )) : "No Contacts!"}
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
