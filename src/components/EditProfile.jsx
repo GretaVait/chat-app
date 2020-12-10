@@ -14,6 +14,10 @@ const EditProfile = (props) => {
   const hiddenFileInput = useRef(null);
 
   useEffect(() => {
+    setImage(props.user.image)
+  }, [props.user.image])
+
+  useEffect(() => {
     setName(props.user.name);
   }, [props.user])
 
@@ -29,10 +33,12 @@ const EditProfile = (props) => {
   const updateHandler = (e) => {
     e.preventDefault();
 
+    const updatedImage = e.target.elements.avatar.files[0] ? URL.createObjectURL(e.target.elements.avatar.files[0]) : image;
+
     props.updateUserHandler({
       ...props.user,
       name: e.target.elements.username.value,
-      image: e.target.elements.avatar.files[0] ? URL.createObjectURL(e.target.elements.avatar.files[0]) : Avatar
+      image: updatedImage
     });
   }
 

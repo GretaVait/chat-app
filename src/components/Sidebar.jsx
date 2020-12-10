@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ChatList from './ChatList';
 import EditProfile from './EditProfile';
 // Bootstrap imports
-import { Image, Button } from 'react-bootstrap';
+import { Image, Button, Media } from 'react-bootstrap';
 // React Icons imports
 import { FaPowerOff } from 'react-icons/fa';
 
@@ -20,7 +20,7 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <div className="sidebar__user">
-        <div className="sidebar__user__icon" onClick={toggleEditProfile}>
+        <Media as="li" className="sidebar__user__icon" onClick={toggleEditProfile}>
           <Image
             width={64}
             height={64}
@@ -28,7 +28,10 @@ const Sidebar = (props) => {
             src={props.user.image}
             roundedCircle
           />
-        </div>
+          <Media.Body>
+            <h5>{props.user.name}</h5>
+          </Media.Body>
+        </Media>
         
         <Link to="/">
           <Button variant="danger">
