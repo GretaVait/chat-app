@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 // React Icons imports
 import { Form, Image, Button } from 'react-bootstrap';
-import { FaArrowLeft, FaPen } from 'react-icons/fa';
+import { FaArrowLeft, FaPen, FaCamera } from 'react-icons/fa';
 // File imports
 import Avatar from '../img/avatar.png';
 
@@ -64,6 +64,7 @@ const EditProfile = (props) => {
               alt=""
               roundedCircle
             />
+            <div className="overlay">Select an Image <FaCamera /></div>
           </div>
           <Form.Control type="text" value={name} onChange={changeNameHandler} name="username" />
         </Form.Group>
