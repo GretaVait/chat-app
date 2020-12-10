@@ -1,11 +1,11 @@
 ## Chat App
 
-Simple implementation chat app without server logic.
-User can login with email and password ( no registration needed )
-Login with first user in API ( can be changed inside code )
-Shows current contacts with assigned conversations. 
-Lets user append and delete messages.
-Lets user add new contacts.
+1. Simple implementation chat app without server logic.
+2. User can login with email and password ( no registration needed )
+3. Login with first user in API ( can be changed inside code )
+4. Shows current contacts with assigned conversations. 
+5. Lets user append and delete messages.
+6. Lets user add new contacts.
 ![Chat App](https://i.imgur.com/TulGDsj.png)
 
 ## Getting Started
