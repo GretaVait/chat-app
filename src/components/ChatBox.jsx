@@ -100,11 +100,11 @@ const ChatBox = (props) => {
             <div ref={scrollPoint} style={{ float: 'right', clear: 'both' }}></div>
             </div>
 
-            <Form onSubmit={sendMessageHandler}>
+            <Form onSubmit={sendMessageHandler} className="chat-box__send__form">
               <Form.Group>
                 <InputGroup className="mb-3">
                   <FormControl
-                    className="chat-box__send__text"
+                    className="form__message-input"
                     as="textarea"
                     name="message"
                     required
