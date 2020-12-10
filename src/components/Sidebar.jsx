@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 // Components imports
 import ChatList from './ChatList';
 import EditProfile from './EditProfile';
+import AddChatModal from './AddChatModal';
 // Bootstrap imports
 import { Image, Button, Media } from 'react-bootstrap';
 // React Icons imports
-import { FaPowerOff } from 'react-icons/fa';
+import { FaPowerOff, FaCommentDots } from 'react-icons/fa';
 
 const Sidebar = (props) => {
   // ---- HOOKS ---- //
   const [ isEditProfile, setIsEditProfile ] = useState(false);
+
+  const [ modalShow, setModalShow ] = useState(false);
 
   // ---- FUNCTIONS ---- //
   const toggleEditProfile = () => {
@@ -32,12 +35,25 @@ const Sidebar = (props) => {
             <h5>{props.user.name}</h5>
           </Media.Body>
         </Media>
-        
-        <Link to="/">
-          <Button variant="danger">
-            Logout <FaPowerOff />
+
+        <AddChatModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          conversations={props.conversations}
+          user={props.user}
+          addContactHandler={props.addContactHandler}
+        />
+        <div className="sidebar__user__cta">
+          <Button variant="primary" onClick={() => setModalShow(true)}>
+            Add Chat <FaCommentDots />
           </Button>
-        </Link>
+          
+          <Link to="/">
+            <Button variant="danger">
+              Logout <FaPowerOff />
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <ChatList 
