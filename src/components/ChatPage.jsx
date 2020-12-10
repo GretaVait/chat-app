@@ -65,6 +65,9 @@ const ChatPage = () => {
         ))
     
         setMessages(userMessages);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
   }, [])
   
@@ -80,7 +83,6 @@ const ChatPage = () => {
 
   const closeChatHandler = () => {
     setOpenChat(false);
-    console.log(currentContact);
   }
 
   const sendMessageHandler = (message) => {
