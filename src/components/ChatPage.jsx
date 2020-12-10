@@ -3,7 +3,7 @@ import ChatBox from './ChatBox';
 import Sidebar from './Sidebar';
 import Loading from './Loading';
 
-import data, {fetchData} from '../api/jsonbin';
+import fetchData from '../api/jsonbin';
 
 import Avatar from '../img/avatar.png';
 
