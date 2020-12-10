@@ -32,6 +32,7 @@ const ChatPage = () => {
     // fetch data and set states
     fetchData()
       .then(data => {
+        // user set as the first user inside the users object
         const userData = setUserData(data.users[0]);
 
         const userConversations = setConversationsData(data.conversations, userData);

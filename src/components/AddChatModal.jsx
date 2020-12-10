@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import Loading from './Loading';
-//
+// Bootstrap imports
 import { Modal, Button, Image } from 'react-bootstrap';
-//
-import fetchData from '../api/jsonbin';
 // File imports
 import Avatar from '../img/avatar.png';
 
 const AddChatModal = (props) => {
+  // ---- HOOKS ---- //
   const [ otherContacts, setOtherContacts ] = useState([]);
+
   useEffect(() => {
     if (props.show) {
+      // filter users that does not belong to our contact list ( including our user )
       const otherContacts = props.allUsers.filter(contact => (
         !props.conversations.map(userConversation => contact.id == (userConversation.u1id === props.user.id ? userConversation.u2id : userConversation.u1id)).includes(true)
       ));
-
+      // filter users without our user
       const filteredContacts = otherContacts.filter(contact => props.user.id != contact.id)
-
+      // set contacts image to Avatar if user image is null
       const formattedContacts = filteredContacts.map(contact => {
         const contactAvatar = contact.image ? contact.image : Avatar
         return ({
