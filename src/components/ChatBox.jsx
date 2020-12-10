@@ -51,8 +51,8 @@ const ChatBox = (props) => {
   }
 
   return (
-    <div className={!!Object.keys(props.currentContact).length ? 'chat-box visible' : 'chat-box'}>
-      {!Object.keys(props.currentContact).length && 
+    <div className={props.openChat ? 'chat-box visible' : 'chat-box'}>
+      {!props.openChat && 
         <div className="chat-box__inactive">
           <img src={Illustration} alt="Illustration" />
           <h3>Select a contact to start a conversation</h3>
@@ -90,7 +90,7 @@ const ChatBox = (props) => {
                 </div>
               </div>
               ))}
-            <div ref={scrollPoint} style={{ float: 'right', clear: 'both' }}>current</div>
+            <div ref={scrollPoint} style={{ float: 'right', clear: 'both' }}></div>
             </div>
 
             <Form onSubmit={sendMessageHandler}>

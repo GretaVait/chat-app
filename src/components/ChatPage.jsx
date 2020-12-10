@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ChatBox from './ChatBox';
 import Sidebar from './Sidebar';
+import Loading from './Loading';
 
 import data, {fetchData} from '../api/jsonbin';
 
@@ -9,7 +10,7 @@ import Avatar from '../img/avatar.png';
 const ChatPage = () => {
 
   const [ user, setUser ] = useState({
-    id: '000',
+    id: null,
     name: 'user',
     image: Avatar
   });
@@ -21,6 +22,8 @@ const ChatPage = () => {
   const [ messages, setMessages ] = useState([]);
 
   const [ currentContact, setCurrentContact ] = useState({});
+
+  const [ openChat, setOpenChat ] = useState(false);
 
   useEffect(() => {
     //
@@ -67,10 +70,12 @@ const ChatPage = () => {
 
   const openChatHandler = (contact) => {
     setCurrentContact(contact);
+    setOpenChat(true);
   }
 
   const closeChatHandler = () => {
-    setCurrentContact({});
+    setOpenChat(false);
+    console.log(currentContact);
   }
 
   const sendMessageHandler = (message) => {
@@ -84,14 +89,16 @@ const ChatPage = () => {
 
   return (
     <div className="chat-page">
-      <Sidebar 
-        user={user} 
-        contacts={contacts} 
-        messages={messages} 
-        conversations={conversations} 
-        updateUserHandler={updateUserHandler} 
-        openChatHandler={openChatHandler} 
-      />
+      {user.id ?
+        <Sidebar 
+          user={user} 
+          contacts={contacts} 
+          messages={messages} 
+          conversations={conversations} 
+          updateUserHandler={updateUserHandler} 
+          openChatHandler={openChatHandler} 
+        />
+      : <Loading />}
 
       <ChatBox 
         user={user}
@@ -99,6 +106,7 @@ const ChatPage = () => {
         currentContact={currentContact} 
         conversations={conversations} 
         messages={messages}
+        openChat={openChat}
         sendMessageHandler={sendMessageHandler}
         closeChatHandler={closeChatHandler}
         deleteMessageHandler={deleteMessageHandler}
