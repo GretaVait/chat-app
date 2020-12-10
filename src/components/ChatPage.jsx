@@ -102,6 +102,7 @@ const ChatPage = () => {
           contacts={contacts} 
           messages={messages} 
           conversations={conversations} 
+          currentContact={currentContact} 
           updateUserHandler={updateUserHandler} 
           openChatHandler={openChatHandler} 
         />

@@ -21,7 +21,7 @@ const ChatList = (props) => {
         })
         return (
           <div key={contact.id} onClick={() => props.openChatHandler(contact)}>
-            <Chat contact={contact} lastMessage={lastMessage} />
+            <Chat contact={contact} lastMessage={lastMessage} currentContact={props.currentContact}  />
           </div>
         );
       })}

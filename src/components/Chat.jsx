@@ -5,7 +5,7 @@ import { Media, Image } from 'react-bootstrap';
 const Chat = (props) => {
 
   return (
-    <Media as="li" className="contact">
+    <Media as="li" className={props.currentContact.id === props.contact.id ? 'contact visible' : 'contact'} >
       <Image
         width={64}
         height={64}

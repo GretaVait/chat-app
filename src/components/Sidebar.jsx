@@ -43,6 +43,7 @@ const Sidebar = (props) => {
       <ChatList 
         contacts={props.contacts} 
         messages={props.messages} 
+        currentContact={props.currentContact} 
         conversations={props.conversations} 
         openChatHandler={props.openChatHandler}
       />
