@@ -1,6 +1,7 @@
 ## Chat App
 
 Simple implementation chat app without server logic. Shows current contatacs with assigned conversations. Lets user append new messages.
+![Chat App](https://i.imgur.com/7YK5B8T.png)
 
 ## Getting Started
 
