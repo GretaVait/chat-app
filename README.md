@@ -1,7 +1,11 @@
 ## Chat App
 
-Simple implementation chat app without server logic. Shows current contatacs with assigned conversations. Lets user append new messages.
-![Chat App](https://i.imgur.com/7YK5B8T.png)
+Simple implementation chat app without server logic.
+User can login with email and password ( no registration needed )
+Login with first user in API ( can be changed inside code )
+Shows current contacts with assigned conversations. 
+Lets user append new messages.
+![Chat App](https://i.imgur.com/TulGDsj.png)
 
 ## Getting Started
 
