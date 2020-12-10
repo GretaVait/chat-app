@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-//
+// Bootstrap imports
 import { Container, Form, Button } from 'react-bootstrap';
 
 

@@ -1,4 +1,5 @@
 import React from 'react';
+// Components imports
 import Chat from './Chat';
 
 const ChatList = (props) => {
@@ -6,7 +7,8 @@ const ChatList = (props) => {
 
   return (
     <div>
-      {props.contacts.map(contact => {
+      { // get the last message and show it inside individual chat
+      props.contacts.map(contact => {
         lastMessage = '';
         props.conversations.map(conversation => {
           if (conversation.u1id === contact.id || conversation.u2id === contact.id) {

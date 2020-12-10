@@ -1,35 +1,42 @@
 import React, { useEffect, useState, useRef } from 'react';
 import moment from 'moment';
-
+// Bootstrap imports
 import { Form, InputGroup, FormControl, Button, Image, Dropdown, DropdownButton } from 'react-bootstrap';
-
+// React Icons imports
 import { FaPaperPlane, FaArrowLeft } from 'react-icons/fa';
-
 import { BsThreeDotsVertical } from "react-icons/bs";
-
+// File imports
 import Illustration from '../img/illustration.svg';
 
 const ChatBox = (props) => {
   let filteredMessagesArray = [];
+  // ---- HOOKS ---- //
   const [ currentConversationId, setCurrentConversationId ] = useState('');
-  const [ displayedMessages, setDisplayedMessages ] = useState([]);
 
+  const [ displayedMessages, setDisplayedMessages ] = useState([]);
+  
   const scrollPoint = useRef();
 
   useEffect(() => {
+    // get current convo id and store it to the state
     props.conversations.map(conversation => {
       if (conversation.u1id === props.currentContact.id || conversation.u2id === props.currentContact.id) {
+        // by convo id filter messages
         filteredMessagesArray = props.messages.filter(message => conversation.id === message.conversationId )
         setCurrentConversationId(conversation.id);
       }
     })
+    // filterd messages store it to the state
     setDisplayedMessages(filteredMessagesArray);
   }, [props.currentContact, props.messages]);
 
   useEffect(() => {
+    // when displayedMessages state changes scroll down to the scroll point ref
     scrollPoint.current && scrollPoint.current.scrollIntoView({ behavior: 'smooth' });
   }, [displayedMessages])
   
+  // ---- FUNCTIONS ---- //
+  // append new send messages
   const sendMessageHandler = (e) => {  
     e.preventDefault();
     props.sendMessageHandler({

@@ -1,4 +1,5 @@
 import React from 'react';
+// Bootstrap imports
 import { Media, Image } from 'react-bootstrap';
 
 const Chat = (props) => {

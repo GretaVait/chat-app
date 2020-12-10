@@ -1,18 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
-
+// React Icons imports
+import { Form, Image, Button } from 'react-bootstrap';
+import { FaArrowLeft, FaPen } from 'react-icons/fa';
+// File imports
 import Avatar from '../img/avatar.png';
 
-import { Form, Image, Button } from 'react-bootstrap';
-
-import { FaArrowLeft, FaPen } from 'react-icons/fa';
-
 const EditProfile = (props) => {
+  // ---- HOOKS ---- //
   const [ image, setImage ] = useState(props.user.image);
+
   const [ name, setName ] = useState(props.user.name);
 
   const hiddenFileInput = useRef(null);
 
+  useEffect(() => {
+    setName(props.user.name);
+  }, [props.user])
 
+  // ---- FUNCTIONS ---- //
   const changeImageHandler = (e) => {
     setImage(URL.createObjectURL(e.target.files[0]));
   }
@@ -34,10 +39,6 @@ const EditProfile = (props) => {
   const changeNameHandler = (e) => {
     setName(e.target.value);
   }
-
-  useEffect(() => {
-    setName(props.user.name);
-  }, [props.user])
 
   return (
     <div>

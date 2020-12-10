@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+// Components imports
 import ChatList from './ChatList';
 import EditProfile from './EditProfile';
-
+// Bootstrap imports
 import { Image, Button } from 'react-bootstrap';
-
+// React Icons imports
 import { FaPowerOff } from 'react-icons/fa';
 
 const Sidebar = (props) => {
-
+  // ---- HOOKS ---- //
   const [ isEditProfile, setIsEditProfile ] = useState(false);
 
+  // ---- FUNCTIONS ---- //
   const toggleEditProfile = () => {
     setIsEditProfile(prevIsEditProfile => !prevIsEditProfile);
   }

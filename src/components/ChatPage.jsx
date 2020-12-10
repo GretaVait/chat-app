@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
+// Components imports
 import ChatBox from './ChatBox';
 import Sidebar from './Sidebar';
 import Loading from './Loading';
-
+// Data imports
 import fetchData from '../api/jsonbin';
-
+// File imports
 import Avatar from '../img/avatar.png';
 
 const ChatPage = () => {
-
+  // ---- HOOKS ---- //
   const [ user, setUser ] = useState({
     id: null,
     name: 'user',
@@ -26,7 +27,7 @@ const ChatPage = () => {
   const [ openChat, setOpenChat ] = useState(false);
 
   useEffect(() => {
-    //
+    // fetch data and set states
     fetchData()
       .then(data => {
         const userAvatar = data.users[0].image ? data.users[0].image : Avatar
@@ -41,11 +42,13 @@ const ChatPage = () => {
         ));
 
         setConversations(userConversations);
-    
+          
+        // filter contacts by convo id, if convo id matches user id it is our contact
         const userContacts = data.users.filter(contact => (
           userConversations.map(userConversation => contact.id == (userConversation.u1id === userData.id ? userConversation.u2id : userConversation.u1id)).includes(true)
         ));
-
+        
+        // set contacts image to Avatar if user image is null
         const formattedContacts = userContacts.map(contact => {
           const contactAvatar = contact.image ? contact.image : Avatar
           return ({
@@ -55,7 +58,8 @@ const ChatPage = () => {
         });
     
         setContacts(formattedContacts);
-    
+        
+        // set messages if message id matches convo id
         const userMessages = data.messages.filter(message => (
           userConversations.map(conversation => message.conversationId === conversation.id).includes(true)
         ))
@@ -64,6 +68,7 @@ const ChatPage = () => {
       });
   }, [])
   
+  // ---- FUNCTIONS ---- //
   const updateUserHandler = (updatedUser) => {
     setUser(updatedUser);
   }
