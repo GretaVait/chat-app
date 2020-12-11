@@ -9,8 +9,9 @@
   @media (hover: hover)
     &:hover
       background-color: $light-grey
-  &.visible
-    background-color: $light-grey
+  @media screen and ( min-width: 769px )
+    &.visible
+      background-color: $light-grey
 
   &__content
     min-width: 0
