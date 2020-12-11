@@ -1,8 +1,6 @@
 .chat-box
   position: relative
-  display: flex
-  flex-direction: column
-  justify-content: flex-end
+  @include flex($direction: column, $justify: flex-end)
   height: 100%
   flex: 65%
   border-left: 1px solid $mid-grey
@@ -19,10 +17,7 @@
       transform: translateX(0%)
 
   &__inactive
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
+    @include flex($direction: column, $align: center, $justify: center)
     height: 100vh
     padding: 10rem
     text-align: center
@@ -39,8 +34,7 @@
     top: 0
     left: 0
     width: 100%
-    display: flex
-    align-items: center
+    @include flex($align: center)
     background-color: $light-grey
     padding: 1rem
     border-bottom: 1px solid $mid-grey
